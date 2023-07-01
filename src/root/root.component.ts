@@ -12,11 +12,12 @@ import { AjaxResponse } from 'rxjs/ajax';
   styleUrls: ['./root.component.css'],
   standalone: true,
   imports: [CommonModule, RicercaComponent, InserimentoComponent],
+  providers: [AccessoArchivioService],
 })
 export class RootComponent implements OnInit {
-  // constructor(private archivioAppoggio: AccessoArchivioService) {}
+  constructor(private archivioAppoggio: AccessoArchivioService) {}
 
   ngOnInit() {}
 
-  // archivio = new Archivio(this.archivioAppoggio);
+  archivio = new Archivio(this.archivioAppoggio);
 }
