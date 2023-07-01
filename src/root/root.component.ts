@@ -4,6 +4,7 @@ import { RicercaComponent } from './ricerca/ricerca.component';
 import { InserimentoComponent } from './inserimento/inserimento.component';
 import { CommonModule } from '@angular/common';
 import { Archivio } from './archivio';
+import { AjaxResponse } from 'rxjs/ajax';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,7 @@ import { Archivio } from './archivio';
   imports: [CommonModule, RicercaComponent, InserimentoComponent],
 })
 export class RootComponent implements OnInit {
-  constructor(private archivioAppoggio: AccessoArchivioService) {}
+  // constructor(private archivioAppoggio: AccessoArchivioService) {}
 
   ngOnInit() {}
 
