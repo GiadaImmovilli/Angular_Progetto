@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AccessoArchivioService } from './accesso-archivio.service';
 
 @Component({
   selector: 'app-root',
