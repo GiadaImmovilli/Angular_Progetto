@@ -10,4 +10,8 @@ export class InserimentoComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {}
+
+  public inserimentoLibro(){
+    
+  }
 }
