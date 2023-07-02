@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AccessoArchivioService } from '../accesso-archivio.service';
+import { Archivio } from '../archivio';
+import { Libro } from '../libro';
 
 @Component({
   selector: 'app-inserimento',
@@ -10,7 +12,8 @@ import { AccessoArchivioService } from '../accesso-archivio.service';
   imports: [CommonModule],
 })
 export class InserimentoComponent implements OnInit {
-  constructor() {}
+  constructor(private archivioAppoggio: AccessoArchivioService) {}
+  archivio = new Archivio(this.archivioAppoggio);
 
   ngOnInit() {}
 
@@ -30,6 +33,8 @@ export class InserimentoComponent implements OnInit {
     var nuovoTitolo = inputTitolo.value;
     var nuovoAutore = inputAutore.value;
     var nuovaPosizione = inputPosizione.value;
+
+    var nuovoLibro = new Libro(nuovoTitolo, nuovoAutore, nuovaPosizione, ''); // All'inserimento di un libro, il nominativo è vuoto
 
     // document.getElementById('output2').innerHTML =
     //   inputTitolo.value + ' ' + inputAutore.value + ' ' + inputPosizione.value;

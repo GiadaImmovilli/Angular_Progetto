@@ -10,7 +10,8 @@ export class Archivio {
     this.archivioAppoggio = archivioAppoggio;
     this.archivioAppoggio.getDB().subscribe({
       next: (res: AjaxResponse<any>) => {
-        document.getElementById('output').innerHTML = res.response;
+        this.archivio = res.response;
+        // document.getElementById('output').innerHTML = String(this.archivio);
       },
       error: (err: AjaxError) => console.error(err.response),
     });
