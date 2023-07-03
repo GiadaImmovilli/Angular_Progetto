@@ -3,28 +3,25 @@ import { AccessoArchivioService } from './accesso-archivio.service';
 import { AjaxResponse, AjaxError } from 'rxjs/ajax';
 
 export class Archivio {
-  archivio: Array<Libro> = [];
+  // archivio: Array<Libro> = [];
   archivioAppoggio: AccessoArchivioService;
 
   constructor(archivioAppoggio: AccessoArchivioService) {
     this.archivioAppoggio = archivioAppoggio;
-    this.archivioAppoggio.getDB().subscribe({
-      next: (res: AjaxResponse<any>) => {
-        this.archivio = res.response;
-        document.getElementById('output').innerHTML = String(this.archivio);
-      },
-      error: (err: AjaxError) => console.error(err.response),
-    });
+    // this.archivioAppoggio.getDB().subscribe({
+    //   next: (res: AjaxResponse<any>) => {
+    //     this.archivio = JSON.parse(res.response);
+    //     document.getElementById('output').innerHTML = String(this.archivio);
+    //   },
+    //   error: (err: AjaxError) => console.error(err.response),
+    // });
   }
 
-  inserimentoLibro(libroInserito: Libro) {
-    this.archivio.push(libroInserito);
-    this.archivioAppoggio.setDB(this.archivio).subscribe({
-      next: (res: AjaxResponse<any>) => {
-        document.getElementById('output').innerHTML = String(
-          this.archivioAppoggio
-        );
-      },
+  inserimentoLibro(libroInserito: Libro, archivio: Array<Libro>) {
+    archivio.push(libroInserito);
+    // document.getElementById('output').innerHTML = String(this.archivio);
+    this.archivioAppoggio.setDB(archivio).subscribe({
+      next: (res: AjaxResponse<any>) => {},
       error: (err: AjaxError) => console.error(err.response),
     });
   }
