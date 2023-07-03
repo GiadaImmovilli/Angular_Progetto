@@ -21,7 +21,9 @@ export class Archivio {
     this.archivio.push(libroInserito);
     this.archivioAppoggio.setDB(this.archivio).subscribe({
       next: (res: AjaxResponse<any>) => {
-        document.getElementById('output').innerHTML = 'Inserimento effettuato';
+        document.getElementById('output').innerHTML = String(
+          this.archivioAppoggio
+        );
       },
       error: (err: AjaxError) => console.error(err.response),
     });
