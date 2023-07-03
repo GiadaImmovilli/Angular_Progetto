@@ -13,6 +13,8 @@ import { ajax, AjaxResponse, AjaxRequest, AjaxError } from 'rxjs/ajax';
   imports: [CommonModule],
 })
 export class InserimentoComponent implements OnInit {
+  inserito: boolean; // per far ricomparire il file
+
   archivio: Array<Libro> = [];
   constructor(private archivioAppoggio: AccessoArchivioService) {}
 
@@ -49,7 +51,7 @@ export class InserimentoComponent implements OnInit {
     this.archivioAppoggio.getDB().subscribe({
       next: (res: AjaxResponse<any>) => {
         this.archivio = res.response;
-        document.getElementById('output').innerHTML = String(this.archivio);
+        // document.getElementById('output').innerHTML = String(this.archivio);
         this.archivio = JSON.parse(res.response);
         nuovoArchivio.inserimentoLibro(nuovoLibro, this.archivio);
       },
@@ -60,10 +62,10 @@ export class InserimentoComponent implements OnInit {
     inputAutore.value = '';
     inputPosizione.value = '';
 
-    document.getElementById('output').innerHTML = nuovoArchivio.toString();
+    // document.getElementById('output').innerHTML = nuovoArchivio.toString();
   }
 
   tornaIndietro() {
-    // this.inserisci = false;
+    this.inserito = false;
   }
 }

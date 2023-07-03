@@ -1,7 +1,9 @@
-<br /><br />
-
 <div *ngIf="inserisci">
-  <h4>Compilare i seguenti campi per inserire un nuovo libro:</h4>
+  <!-- Si visualizza quando l'utente clicca il bottone di Inserimento -->
+  <h4>
+    Compilare i seguenti campi e premere il bottone di Conferma Inserimento per
+    inserire un nuovo libro:
+  </h4>
   <p>Titolo: <input id="titoloInserito" /></p>
   <p>Autore: <input id="autoreInserito" /></p>
   <p>Posizione: <input id="posizioneInserita" /></p>
@@ -10,5 +12,4 @@
     Conferma Inserimento
   </button>
   <button id="indietro" (click)="tornaIndietro()">Indietro</button>
-  <p id="output2"></p>
 </div>
