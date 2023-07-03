@@ -22,14 +22,6 @@ export class InserimentoComponent implements OnInit {
   // @Input() vecchioArchivio: AccessoArchivioService;
 
   confermaInserimento() {
-    this.archivioAppoggio.getDB().subscribe({
-      next: (res: AjaxResponse<any>) => {
-        this.archivio = JSON.parse(res.response);
-        // document.getElementById('output').innerHTML = String(this.archivio);
-      },
-      error: (err: AjaxError) => console.error(err.response),
-    });
-
     // variabili che reperiscono le stringhe inserite in input
     var inputTitolo: HTMLInputElement = document.getElementById(
       'titoloInserito'
@@ -52,13 +44,23 @@ export class InserimentoComponent implements OnInit {
     // document.getElementById('output2').innerHTML =
     //   inputTitolo.value + ' ' + inputAutore.value + ' ' + inputPosizione.value;
 
+    var nuovoArchivio = new Archivio(this.archivioAppoggio);
+
+    this.archivioAppoggio.getDB().subscribe({
+      next: (res: AjaxResponse<any>) => {
+        this.archivio = res.response;
+        document.getElementById('output').innerHTML = String(this.archivio);
+        this.archivio = JSON.parse(res.response);
+        nuovoArchivio.inserimentoLibro(nuovoLibro, this.archivio);
+      },
+      error: (err: AjaxError) => console.error(err.response),
+    });
+
     inputTitolo.value = '';
     inputAutore.value = '';
     inputPosizione.value = '';
 
-    var nuovoArchivio = new Archivio(this.archivioAppoggio);
-
-    nuovoArchivio.inserimentoLibro(nuovoLibro, this.archivio);
+    document.getElementById('output').innerHTML = nuovoArchivio.toString();
   }
 
   tornaIndietro() {

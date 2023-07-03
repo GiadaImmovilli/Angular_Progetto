@@ -15,7 +15,7 @@ import { AjaxResponse } from 'rxjs/ajax';
   providers: [AccessoArchivioService],
 })
 export class RootComponent implements OnInit {
-  constructor(private archivioAppoggio: AccessoArchivioService) {}
+  constructor() {}
   ngOnInit() {}
 
   inserisci: boolean = false; // fino a quando non viene fatta richiesta di inserire un nuovo libro
