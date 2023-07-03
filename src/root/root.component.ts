@@ -19,10 +19,8 @@ export class RootComponent implements OnInit {
   ngOnInit() {}
 
   inserisci: boolean = false; // fino a quando non viene fatta richiesta di inserire un nuovo libro
-  vecchioArchivio = new Archivio(this.archivioAppoggio);
-
-
-  
+  // vecchioArchivio: AccessoArchivioService;
+  // vecchioArchivio = new Archivio(this.archivioAppoggio);
 
   richiestaInserimento() {
     this.inserisci = true; // è stato cliccato il bottone per inserire un libro

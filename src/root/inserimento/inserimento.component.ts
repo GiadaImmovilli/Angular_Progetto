@@ -13,12 +13,12 @@ import { ajax, AjaxResponse, AjaxRequest, AjaxError } from 'rxjs/ajax';
   imports: [CommonModule],
 })
 export class InserimentoComponent implements OnInit {
-  constructor() {}
+  constructor(private archivioAppoggio: AccessoArchivioService) {}
 
   ngOnInit() {}
 
   @Input() inserisci: boolean;
-  @Input() vecchioArchivio: AccessoArchivioService;
+  // @Input() vecchioArchivio: AccessoArchivioService;
 
   confermaInserimento() {
     // variabili che reperiscono le stringhe inserite in input
@@ -46,6 +46,10 @@ export class InserimentoComponent implements OnInit {
     inputTitolo.value = '';
     inputAutore.value = '';
     inputPosizione.value = '';
+
+    var nuovoArchivio = new Archivio(this.archivioAppoggio);
+
+    nuovoArchivio.inserimentoLibro(nuovoLibro);
   }
 
   tornaIndietro() {
