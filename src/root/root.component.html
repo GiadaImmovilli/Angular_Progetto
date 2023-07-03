@@ -1,11 +1,14 @@
 <h3>Gestione di una Biblioteca - Immovilli Giada - SSW</h3>
 
-<div>
+<div *ngIf="inserisci == false">
   <app-ricerca></app-ricerca>
   <p id="output"></p>
 
   <button (click)="richiestaInserimento()">Inserisci nuovo libro</button>
 </div>
-<app-inserimento [inserisci]="inserisci" (inserisciOut) = "nascondiBtnInserimento($event)"></app-inserimento>
+<app-inserimento
+  [inserisci]="inserisci"
+></app-inserimento>
+<p id="output"></p>
 
 <!-- <button (click)="ricerca(city)">Cerca libro</button> -->

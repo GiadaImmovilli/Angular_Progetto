@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AccessoArchivioService } from '../accesso-archivio.service';
 import { Archivio } from '../archivio';
@@ -20,7 +20,7 @@ export class InserimentoComponent implements OnInit {
 
   @Input() inserisci: boolean;
   // @Input() vecchioArchivio: AccessoArchivioService;
-  @Output() inserisciOut = new EventEmitter<boolean>();
+  @Output() inserisciFalse = new EventEmitter<string>();
 
   confermaInserimento() {
     // variabili che reperiscono le stringhe inserite in input
@@ -62,14 +62,8 @@ export class InserimentoComponent implements OnInit {
     inputPosizione.value = '';
 
     // document.getElementById('output').innerHTML = nuovoArchivio.toString();
-  }
 
-  tornaIndietro() {
     this.inserisci = false;
   }
 
-  nascondiInserimento(){
-    this.inserisci = false;
-    this.inserisciOut.emit(this.inserisci);
-  }
 }

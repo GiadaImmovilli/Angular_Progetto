@@ -26,7 +26,4 @@ export class RootComponent implements OnInit {
     this.inserisci = true; // è stato cliccato il bottone per inserire un libro
   }
 
-  nascondiBtnInserimento(inserisciOut: boolean) {
-    this.inserisci = inserisciOut;
-  }
 }
