@@ -20,7 +20,7 @@ export class InserimentoComponent implements OnInit {
 
   @Input() inserisci: boolean;
   // @Input() vecchioArchivio: AccessoArchivioService;
-  @Output() inserisciFalse = new EventEmitter<string>();
+  // @Output() nascondi = new EventEmitter<boolean>();
 
   confermaInserimento() {
     // variabili che reperiscono le stringhe inserite in input
@@ -62,8 +62,10 @@ export class InserimentoComponent implements OnInit {
     inputPosizione.value = '';
 
     // document.getElementById('output').innerHTML = nuovoArchivio.toString();
-
-    this.inserisci = false;
   }
 
+  // nascondiInserimento(valore: boolean) {
+  //   this.inserisci = valore;
+  //   this.nascondi.emit(valore);
+  // }
 }
