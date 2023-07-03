@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AccessoArchivioService } from '../accesso-archivio.service';
 import { Archivio } from '../archivio';
 import { Libro } from '../libro';
+import { ajax, AjaxResponse, AjaxRequest, AjaxError } from 'rxjs/ajax';
 
 @Component({
   selector: 'app-inserimento',
@@ -12,14 +13,15 @@ import { Libro } from '../libro';
   imports: [CommonModule],
 })
 export class InserimentoComponent implements OnInit {
-  constructor(private archivioAppoggio: AccessoArchivioService) {}
-  archivio = new Archivio(this.archivioAppoggio);
+  constructor() {}
 
   ngOnInit() {}
 
   @Input() inserisci: boolean;
+  @Input() vecchioArchivio: AccessoArchivioService;
 
-  inserimentoLibro() {
+  confermaInserimento() {
+    // variabili che reperiscono le stringhe inserite in input
     var inputTitolo: HTMLInputElement = document.getElementById(
       'titoloInserito'
     ) as HTMLInputElement;
@@ -30,10 +32,12 @@ export class InserimentoComponent implements OnInit {
       'posizioneInserita'
     ) as HTMLInputElement;
 
+    // variabili che contengono le stringhe reperite in input
     var nuovoTitolo = inputTitolo.value;
     var nuovoAutore = inputAutore.value;
     var nuovaPosizione = inputPosizione.value;
 
+    // nuovo libro creato con la classe Libro e i parametri inseriti in input
     var nuovoLibro = new Libro(nuovoTitolo, nuovoAutore, nuovaPosizione, ''); // All'inserimento di un libro, il nominativo è vuoto
 
     // document.getElementById('output2').innerHTML =
