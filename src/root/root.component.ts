@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { AccessoArchivioService } from './accesso-archivio.service';
 import { RicercaComponent } from './ricerca/ricerca.component';
 import { InserimentoComponent } from './inserimento/inserimento.component';
@@ -24,5 +24,9 @@ export class RootComponent implements OnInit {
 
   richiestaInserimento() {
     this.inserisci = true; // è stato cliccato il bottone per inserire un libro
+  }
+
+  nascondiBtnInserimento(inserisciOut: boolean) {
+    this.inserisci = inserisciOut;
   }
 }
