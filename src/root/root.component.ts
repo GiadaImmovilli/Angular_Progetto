@@ -17,7 +17,6 @@ import { AjaxResponse } from 'rxjs/ajax';
 export class RootComponent implements OnInit {
   constructor() {}
   ngOnInit() {}
-  @Input() inserito: boolean;
 
   inserisci: boolean = false; // fino a quando non viene fatta richiesta di inserire un nuovo libro
   // vecchioArchivio: AccessoArchivioService;
