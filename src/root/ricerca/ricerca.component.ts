@@ -33,18 +33,19 @@ export class RicercaComponent implements OnInit {
     // conterrà il testo relativo al libro trovato (corrispondenze=1) corrispondente alla stringa inserita
     var risultato = document.getElementById('risultatoRicerca');
     var stringa = inputStringa.value;
-    
+
     this.archivioAppoggio.getDB().subscribe({
       next: (res: AjaxResponse<any>) => {
         archivioRicerca.libriArchivio = res.response; // riempie l'array che verrà utilizzato nel forEach
         if (stringa === '') {
           occorrenze.innerHTML = 'Nessun libro trovato';
         } else {
-          alert(archivioRicerca.libriArchivio);
-          archivioRicerca.ricercaLibri(stringa, libriTrovati);
-    
+          
+          alert("ciao");
+          libriTrovati = archivioRicerca.ricercaLibri(stringa);
+
           occorrenze.innerHTML = '';
-    
+
           if (libriTrovati.length == 1) {
             risultato.innerHTML = 'libro trovato';
           } else {

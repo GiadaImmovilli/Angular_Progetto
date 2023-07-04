@@ -26,34 +26,21 @@ export class Archivio {
     });
   }
 
-  ricercaLibri(stringaInserita: string, libriTrovati: Array<Libro>) {
+  ricercaLibri(stringaInserita: string) {
     // Togliere gli spazi prima e dopo la stringa
     stringaInserita = stringaInserita.trim();
     // console.log(stringaInserita);
     // Pattern per l'espressione regolare che accetta una città
     var pattern = /[a-z]*\s?[a-z]*/;
 
-    alert(this.libriArchivio);
-    libriTrovati = this.libriArchivio.filter(
-      (libro) =>
-        pattern.test(stringaInserita) &&
-        (libro['autore']
-          .toLowerCase()
-          .includes(stringaInserita.toLowerCase()) ||
-          libro['titolo'].toLowerCase().includes(stringaInserita.toLowerCase()))
-    );
-    // if (
-    //   pattern.test(stringaInserita) &&
-    //   (libro['autore'].toLowerCase().includes(stringaInserita.toLowerCase()) ||
-    //     libro['titolo'].toLowerCase().includes(stringaInserita.toLowerCase()))
-    // ) {
-    //   libriTrovati.push({
-    //     titolo: libro['titolo'],
-    //     autore: libro['autore'],
-    //     posizione: libro['posizione'],
-    //     nominativo: libro['nominativo'],
-    //   });
-    // }
+    return this.libriArchivio.filter((libro) => (libro.titolo + libro.autore).toLowerCase().includes(stringaInserita));
+
+
+    // pattern.test(stringaInserita) &&
+    //     (libro['autore']
+    //       .toLowerCase()
+    //       .includes(stringaInserita.toLowerCase()) ||
+    //       libro['titolo'].toLowerCase().includes(stringaInserita.toLowerCase()))
   }
 
   // constructor(listaLibri: ){
