@@ -7,6 +7,6 @@
   <button (click)="richiestaInserimento()">Inserisci nuovo libro</button>
 </div>
 
-<app-inserimento [inserisci]="inserisci"></app-inserimento>
+<app-inserimento [inserisci]="inserisci" (nascondi)="nascondiFormInserimento($event)"></app-inserimento>
 <p id="output"></p>
 <!-- <button (click)="ricerca(city)">Cerca libro</button> -->
