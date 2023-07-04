@@ -1,6 +1,10 @@
 <div *ngIf="ricerca == true">
-  <input id="stringa" (keyup.enter)="ricercaLibro()" />
-
-  <button id="indietro" (click)="nascondiRicerca()">Indietro</button>
+  <h4>Inserire il titolo o l'autore del libro che si desidera trovare:</h4>
+  <p id="risultatoRicerca"></p>
+  <input id="stringaInput" (keyup.enter)="ricercaSingoloLibro()" />
+  <p id="risultatoOccorrenze"></p>
+  <br /><br />
+  <div>
+    <button id="indietro" (click)="nascondiRicerca()">Indietro</button>
+  </div>
 </div>
-
