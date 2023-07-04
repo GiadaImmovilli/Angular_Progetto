@@ -17,8 +17,18 @@ export class RicercaComponent implements OnInit {
   constructor(private archivioAppoggio: AccessoArchivioService) {}
 
   @Input() ricerca: boolean;
+  @Output() nascondi = new EventEmitter<boolean>();
+
   ngOnInit() {}
 
+  ricercaLibro() {
+    this.nascondiRicerca();
+  }
+
+  nascondiRicerca() {
+    this.ricerca = false;
+    this.nascondi.emit(this.ricerca);
+  }
   // var nuovoArchivio = new Archivio(this.archivioAppoggio);
 
   //   this.archivioAppoggio.getDB().subscribe({

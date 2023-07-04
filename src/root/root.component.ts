@@ -34,4 +34,8 @@ export class RootComponent implements OnInit {
   richiestaRicerca() {
     this.ricerca = true;
   }
+
+  nascondiFormRicerca(valore: boolean) {
+    this.ricerca = valore;
+  }
 }

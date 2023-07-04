@@ -1,3 +1,6 @@
-<div *ngIf="ricerca==true">
-  <input id="stringa"/>
+<div *ngIf="ricerca == true">
+  <input id="stringa" (keyup.enter)="ricercaLibro()" />
+
+  <button id="indietro" (click)="nascondiRicerca()">Indietro</button>
 </div>
+
