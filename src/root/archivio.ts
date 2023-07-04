@@ -33,9 +33,9 @@ export class Archivio {
   ) {
     // Togliere gli spazi prima e dopo la stringa
     stringaInserita = stringaInserita.trim();
-    console.log(stringaInserita);
+    // console.log(stringaInserita);
     // Pattern per l'espressione regolare che accetta una città
-    let pattern = /[a-z]*\s?[a-z]*/;
+    var pattern = /[a-z]*\s?[a-z]*/;
 
     if (
       pattern.test(stringaInserita) &&

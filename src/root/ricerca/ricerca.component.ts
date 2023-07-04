@@ -13,8 +13,10 @@ import { ajax, AjaxResponse, AjaxRequest, AjaxError } from 'rxjs/ajax';
   imports: [CommonModule],
 })
 export class RicercaComponent implements OnInit {
-  archivio: Array<Libro> = [];
   constructor(private archivioAppoggio: AccessoArchivioService) {}
+
+  listaLibri: Array<Libro> = [];
+  archivio = new Archivio(this.archivioAppoggio);
 
   @Input() ricerca: boolean;
   @Output() nascondi = new EventEmitter<boolean>();
@@ -22,11 +24,10 @@ export class RicercaComponent implements OnInit {
   ngOnInit() {}
 
   ricercaSingoloLibro() {
-    // var nuovoArchivio = new Archivio(this.archivioAppoggio);
-
     this.archivioAppoggio.getDB().subscribe({
       next: (res: AjaxResponse<any>) => {
-        this.archivio = JSON.parse(res.response);
+        this.listaLibri = res.response; // riempie l'array che verrà utilizzato nel forEach
+        // alert(this.listaLibri);
       },
       error: (err: AjaxError) => console.error(err.response),
     });
@@ -47,26 +48,26 @@ export class RicercaComponent implements OnInit {
 
     var stringa = inputStringa.value;
 
-    // if (stringa === '') {
-    //   occorrenze.value = 'Nessun libro trovato';
-    // } else {
-    //   this.archivio.forEach((singoloLibro) =>
-    //     this.archivio.ricercaLibri(stringa, singoloLibro, libriTrovati)
-    //   );
+    if (stringa === '') {
+      occorrenze.value = 'Nessun libro trovato';
+    } else {
+      alert('ciao');
+      this.listaLibri.forEach((singoloLibro) =>
+        this.archivio.ricercaLibri(stringa, singoloLibro, libriTrovati)
+      );
 
-    //   occorrenze.value = '';
+      occorrenze.value = '';
 
-    //   if (libriTrovati.length == 1) {
-    //     libriTrovati.forEach(
-    //       (singoloLibro) =>
-    //         (risultato.value =
-    //           ' "' + singoloLibro['titolo'] + '" ' + singoloLibro['autore'])
-    //     );
-    //   } else {
-    //     occorrenze.value = 'Libri trovati: ' + libriTrovati.length;
-    //   }
-    // }
-    this.nascondiRicerca(); // la pagina deve tornare alla home
+      if (libriTrovati.length == 1) {
+        libriTrovati.forEach(
+          (singoloLibro) =>
+            (risultato.value =
+              ' "' + singoloLibro['titolo'] + '" ' + singoloLibro['autore'])
+        );
+      } else {
+        occorrenze.value = 'Libri trovati: ' + libriTrovati.length;
+      }
+    }
   }
 
   nascondiRicerca() {

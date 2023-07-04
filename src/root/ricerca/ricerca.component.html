@@ -1,7 +1,7 @@
 <div *ngIf="ricerca == true">
   <h4>Inserire il titolo o l'autore del libro che si desidera trovare:</h4>
   <p id="risultatoRicerca"></p>
-  <input id="stringaInput" (keyup.enter)="ricercaSingoloLibro()" />
+  <input id="stringaInput" (keyup)="ricercaSingoloLibro()" />
   <p id="risultatoOccorrenze"></p>
   <br /><br />
   <div>
