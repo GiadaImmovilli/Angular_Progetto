@@ -46,26 +46,30 @@ export class RicercaComponent implements OnInit {
 
     var stringa = inputStringa.value;
 
-    if (stringa === '') {
-      occorrenze.value = 'Nessun libro trovato';
-    } else {
-      alert('ciao');
-      archivioRicerca.libriArchivio.forEach((singoloLibro) =>
-        archivioRicerca.ricercaLibri(stringa, singoloLibro, libriTrovati)
-      );
+    occorrenze.value = "ciao";
+    alert(occorrenze.value);
 
-      occorrenze.value = '';
+    // result = strs.filter(s => s.includes('val'));
+    // if (stringa === '') {
+    //   occorrenze.value = 'Nessun libro trovato';
+    //  }
+    // else {
+    //   archivioRicerca.libriArchivio.filter((singoloLibro) =>
+    //     archivioRicerca.ricercaLibri(stringa, singoloLibro, libriTrovati)
+    //   );
 
-      if (libriTrovati.length == 1) {
-        libriTrovati.forEach(
-          (singoloLibro) =>
-            (risultato.value =
-              ' "' + singoloLibro['titolo'] + '" ' + singoloLibro['autore'])
-        );
-      } else {
-        occorrenze.value = 'Libri trovati: ' + libriTrovati.length;
-      }
-    }
+    //   occorrenze.value = '';
+
+    //   if (libriTrovati.length == 1) {
+    //     libriTrovati.forEach(
+    //       (singoloLibro) =>
+    //         (risultato.value =
+    //           ' "' + singoloLibro['titolo'] + '" ' + singoloLibro['autore'])
+    //     );
+    //   } else {
+    //     occorrenze.value = 'Libri trovati: ' + libriTrovati.length;
+    //   }
+    // }
   }
 
   nascondiRicerca() {
