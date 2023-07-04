@@ -22,13 +22,6 @@ export class RicercaComponent implements OnInit {
 
   ricercaSingoloLibro() {
     var archivioRicerca = new Archivio(this.archivioAppoggio);
-    this.archivioAppoggio.getDB().subscribe({
-      next: (res: AjaxResponse<any>) => {
-        archivioRicerca.libriArchivio = res.response; // riempie l'array che verrà utilizzato nel forEach
-        // alert(this.listaLibri);
-      },
-      error: (err: AjaxError) => console.error(err.response),
-    });
 
     var inputStringa: HTMLInputElement = document.getElementById(
       'stringaInput'
@@ -36,40 +29,31 @@ export class RicercaComponent implements OnInit {
     // conterrà i libri che corrispondono alla stringa inserita
     var libriTrovati: Array<Libro> = [];
     // conterrà il numero di libri trovati corrispondenti alla stringa inserita
-    var occorrenze: HTMLInputElement = document.getElementById(
-      'risultatoOccorrenze'
-    ) as HTMLInputElement;
+    var occorrenze = document.getElementById('risultatoOccorrenze');
     // conterrà il testo relativo al libro trovato (corrispondenze=1) corrispondente alla stringa inserita
-    var risultato: HTMLInputElement = document.getElementById(
-      'risultatoRicerca'
-    ) as HTMLInputElement;
-
+    var risultato = document.getElementById('risultatoRicerca');
     var stringa = inputStringa.value;
-
-    occorrenze.value = "ciao";
-    alert(occorrenze.value);
-
-    // result = strs.filter(s => s.includes('val'));
-    // if (stringa === '') {
-    //   occorrenze.value = 'Nessun libro trovato';
-    //  }
-    // else {
-    //   archivioRicerca.libriArchivio.filter((singoloLibro) =>
-    //     archivioRicerca.ricercaLibri(stringa, singoloLibro, libriTrovati)
-    //   );
-
-    //   occorrenze.value = '';
-
-    //   if (libriTrovati.length == 1) {
-    //     libriTrovati.forEach(
-    //       (singoloLibro) =>
-    //         (risultato.value =
-    //           ' "' + singoloLibro['titolo'] + '" ' + singoloLibro['autore'])
-    //     );
-    //   } else {
-    //     occorrenze.value = 'Libri trovati: ' + libriTrovati.length;
-    //   }
-    // }
+    
+    this.archivioAppoggio.getDB().subscribe({
+      next: (res: AjaxResponse<any>) => {
+        archivioRicerca.libriArchivio = res.response; // riempie l'array che verrà utilizzato nel forEach
+        if (stringa === '') {
+          occorrenze.innerHTML = 'Nessun libro trovato';
+        } else {
+          alert(archivioRicerca.libriArchivio);
+          archivioRicerca.ricercaLibri(stringa, libriTrovati);
+    
+          occorrenze.innerHTML = '';
+    
+          if (libriTrovati.length == 1) {
+            risultato.innerHTML = 'libro trovato';
+          } else {
+            occorrenze.innerHTML = 'Libri trovati: ' + libriTrovati.length;
+          }
+        }
+      },
+      error: (err: AjaxError) => console.error(err.response),
+    });
   }
 
   nascondiRicerca() {
