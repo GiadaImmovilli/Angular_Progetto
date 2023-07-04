@@ -13,7 +13,6 @@ import { ajax, AjaxResponse, AjaxRequest, AjaxError } from 'rxjs/ajax';
   imports: [CommonModule],
 })
 export class InserimentoComponent implements OnInit {
-  archivio: Array<Libro> = [];
   constructor(private archivioAppoggio: AccessoArchivioService) {}
 
   ngOnInit() {}
@@ -54,10 +53,10 @@ export class InserimentoComponent implements OnInit {
 
     this.archivioAppoggio.getDB().subscribe({
       next: (res: AjaxResponse<any>) => {
-        this.archivio = res.response;
+        nuovoArchivio.archivio = res.response;
         // document.getElementById('output').innerHTML = String(this.archivio);
-        this.archivio = JSON.parse(res.response);
-        nuovoArchivio.inserimentoLibro(nuovoLibro, this.archivio);
+        nuovoArchivio.archivio = JSON.parse(res.response);
+        nuovoArchivio.inserimentoLibro(nuovoLibro);
       },
       error: (err: AjaxError) => console.error(err.response),
     });

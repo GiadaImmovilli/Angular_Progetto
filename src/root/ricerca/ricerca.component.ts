@@ -15,18 +15,16 @@ import { ajax, AjaxResponse, AjaxRequest, AjaxError } from 'rxjs/ajax';
 export class RicercaComponent implements OnInit {
   constructor(private archivioAppoggio: AccessoArchivioService) {}
 
-  listaLibri: Array<Libro> = [];
-  archivio = new Archivio(this.archivioAppoggio);
-
   @Input() ricerca: boolean;
   @Output() nascondi = new EventEmitter<boolean>();
 
   ngOnInit() {}
 
   ricercaSingoloLibro() {
+    var archivioRicerca = new Archivio(this.archivioAppoggio);
     this.archivioAppoggio.getDB().subscribe({
       next: (res: AjaxResponse<any>) => {
-        this.listaLibri = res.response; // riempie l'array che verrà utilizzato nel forEach
+        archivioRicerca.archivio = res.response; // riempie l'array che verrà utilizzato nel forEach
         // alert(this.listaLibri);
       },
       error: (err: AjaxError) => console.error(err.response),
