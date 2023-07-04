@@ -24,7 +24,7 @@ export class RicercaComponent implements OnInit {
     var archivioRicerca = new Archivio(this.archivioAppoggio);
     this.archivioAppoggio.getDB().subscribe({
       next: (res: AjaxResponse<any>) => {
-        archivioRicerca.archivio = res.response; // riempie l'array che verrà utilizzato nel forEach
+        archivioRicerca.libriArchivio = res.response; // riempie l'array che verrà utilizzato nel forEach
         // alert(this.listaLibri);
       },
       error: (err: AjaxError) => console.error(err.response),
@@ -50,8 +50,8 @@ export class RicercaComponent implements OnInit {
       occorrenze.value = 'Nessun libro trovato';
     } else {
       alert('ciao');
-      this.listaLibri.forEach((singoloLibro) =>
-        this.archivio.ricercaLibri(stringa, singoloLibro, libriTrovati)
+      archivioRicerca.libriArchivio.forEach((singoloLibro) =>
+        archivioRicerca.ricercaLibri(stringa, singoloLibro, libriTrovati)
       );
 
       occorrenze.value = '';

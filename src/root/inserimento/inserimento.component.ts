@@ -53,9 +53,9 @@ export class InserimentoComponent implements OnInit {
 
     this.archivioAppoggio.getDB().subscribe({
       next: (res: AjaxResponse<any>) => {
-        nuovoArchivio.archivio = res.response;
+        nuovoArchivio.libriArchivio = res.response;
         // document.getElementById('output').innerHTML = String(this.archivio);
-        nuovoArchivio.archivio = JSON.parse(res.response);
+        nuovoArchivio.libriArchivio = JSON.parse(res.response);
         nuovoArchivio.inserimentoLibro(nuovoLibro);
       },
       error: (err: AjaxError) => console.error(err.response),
