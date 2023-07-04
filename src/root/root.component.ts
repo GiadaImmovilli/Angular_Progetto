@@ -19,6 +19,7 @@ export class RootComponent implements OnInit {
   ngOnInit() {}
 
   inserisci: boolean = false; // fino a quando non viene fatta richiesta di inserire un nuovo libro
+  ricerca: boolean = false; // fino a quando non viene fatta richiesta di ricercare un libro
   // vecchioArchivio: AccessoArchivioService;
   // vecchioArchivio = new Archivio(this.archivioAppoggio);
 
@@ -28,5 +29,9 @@ export class RootComponent implements OnInit {
 
   nascondiFormInserimento(valore: boolean) {
     this.inserisci = valore;
+  }
+
+  richiestaRicerca() {
+    this.ricerca = true;
   }
 }

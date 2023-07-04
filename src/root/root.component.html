@@ -1,12 +1,17 @@
 <h3>Gestione di una Biblioteca - Immovilli Giada - SSW</h3>
 
-<div *ngIf="inserisci == false">
-  <app-ricerca></app-ricerca>
+<div *ngIf="inserisci == false && ricerca == false">
   <p id="output"></p>
 
+  <button (click)="richiestaRicerca()">Ricerca Libro</button>
+  <br />
   <button (click)="richiestaInserimento()">Inserisci nuovo libro</button>
 </div>
 
-<app-inserimento [inserisci]="inserisci" (nascondi)="nascondiFormInserimento($event)"></app-inserimento>
+<app-inserimento
+  [inserisci]="inserisci"
+  (nascondi)="nascondiFormInserimento($event)"
+></app-inserimento>
 <p id="output"></p>
+<app-ricerca [ricerca]="ricerca"></app-ricerca>
 <!-- <button (click)="ricerca(city)">Cerca libro</button> -->
