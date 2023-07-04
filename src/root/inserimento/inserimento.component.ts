@@ -40,7 +40,12 @@ export class InserimentoComponent implements OnInit {
     var nuovaPosizione = inputPosizione.value;
 
     // nuovo libro creato con la classe Libro e i parametri inseriti in input
-    var nuovoLibro = new Libro(nuovoTitolo, nuovoAutore, nuovaPosizione, ''); // All'inserimento di un libro, il nominativo è vuoto
+    var nuovoLibro = new Libro(
+      nuovoTitolo,
+      nuovoAutore,
+      nuovaPosizione,
+      'none'
+    ); // All'inserimento di un libro, il nominativo è vuoto
 
     // document.getElementById('output2').innerHTML =
     //   inputTitolo.value + ' ' + inputAutore.value + ' ' + inputPosizione.value;
