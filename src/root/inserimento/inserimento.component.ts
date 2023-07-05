@@ -23,23 +23,23 @@ export class InserimentoComponent implements OnInit {
 
   confermaInserimento() {
     // variabili che reperiscono le stringhe inserite in input
-    var inputTitolo: HTMLInputElement = document.getElementById(
+    let inputTitolo: HTMLInputElement = document.getElementById(
       'titoloInserito'
     ) as HTMLInputElement;
-    var inputAutore: HTMLInputElement = document.getElementById(
+    let inputAutore: HTMLInputElement = document.getElementById(
       'autoreInserito'
     ) as HTMLInputElement;
-    var inputPosizione: HTMLInputElement = document.getElementById(
+    let inputPosizione: HTMLInputElement = document.getElementById(
       'posizioneInserita'
     ) as HTMLInputElement;
 
     // variabili che contengono le stringhe reperite in input
-    var nuovoTitolo = inputTitolo.value;
-    var nuovoAutore = inputAutore.value;
-    var nuovaPosizione = inputPosizione.value;
+    let nuovoTitolo = inputTitolo.value;
+    let nuovoAutore = inputAutore.value;
+    let nuovaPosizione = inputPosizione.value;
 
     // nuovo libro creato con la classe Libro e i parametri inseriti in input
-    var nuovoLibro = new Libro(
+    let nuovoLibro = new Libro(
       nuovoTitolo,
       nuovoAutore,
       nuovaPosizione,
@@ -49,7 +49,7 @@ export class InserimentoComponent implements OnInit {
     // document.getElementById('output2').innerHTML =
     //   inputTitolo.value + ' ' + inputAutore.value + ' ' + inputPosizione.value;
 
-    var nuovoArchivio = new Archivio(this.archivioAppoggio);
+    let nuovoArchivio = new Archivio(this.archivioAppoggio);
 
     this.archivioAppoggio.getDB().subscribe({
       next: (res: AjaxResponse<any>) => {

@@ -4,13 +4,16 @@ import { AccessoArchivioService } from '../accesso-archivio.service';
 import { Archivio } from '../archivio';
 import { Libro } from '../libro';
 import { ajax, AjaxResponse, AjaxRequest, AjaxError } from 'rxjs/ajax';
+import { PrestitoComponent } from './prestito/prestito.component';
+import { RestituzioneComponent } from './restituzione/restituzione.component';
+import { RimozioneComponent } from './rimozione/rimozione.component';
 
 @Component({
   selector: 'app-ricerca',
   templateUrl: './ricerca.component.html',
   styleUrls: ['./ricerca.component.css'],
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, PrestitoComponent, RestituzioneComponent, RimozioneComponent],
 })
 export class RicercaComponent implements OnInit {
   constructor(private archivioAppoggio: AccessoArchivioService) {}
@@ -35,7 +38,7 @@ export class RicercaComponent implements OnInit {
 
     this.archivioAppoggio.getDB().subscribe({
       next: (res: AjaxResponse<any>) => {
-        archivioRicerca.libriArchivio = JSON.parse(res.response); // riempie l'array che verrà utilizzato nel forEach
+        archivioRicerca.libriArchivio = JSON.parse(res.response);
 
         // Cerca se la stringa è contenuta in almeno un libro
         if (stringa === '') {
@@ -43,11 +46,13 @@ export class RicercaComponent implements OnInit {
         } else {
           archivioRicerca.libriArchivio.forEach((singoloLibro) => {
             if (
-              pattern.test(stringa) &&
-              singoloLibro['autore']
+              (pattern.test(stringa) &&
+                singoloLibro['autore']
+                  .toLowerCase()
+                  .includes(stringa.toLowerCase())) ||
+              singoloLibro['titolo']
                 .toLowerCase()
-                .includes(stringa.toLowerCase()) ||
-              singoloLibro['titolo'].toLowerCase().includes(stringa.toLowerCase())
+                .includes(stringa.toLowerCase())
             ) {
               libriTrovati.push({
                 titolo: singoloLibro['titolo'],
@@ -66,7 +71,13 @@ export class RicercaComponent implements OnInit {
           libriTrovati.forEach(
             (singoloLibro) =>
               (risultato.innerHTML +=
-                ' <h4>Descrizione documento:</h4>"' + singoloLibro['posizione'] + '" <br>Autore:' + singoloLibro['autore'] + '<br>Titolo:' + singoloLibro['titolo'])
+                ' <h4>Descrizione documento:</h4>' +
+                singoloLibro['posizione'] +
+                '<br>Autore: ' +
+                singoloLibro['autore'] +
+                '<br>Titolo: "' +
+                singoloLibro['titolo'] +
+                '"')
           );
           occorrenze.innerHTML = '';
         } else {

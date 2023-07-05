@@ -25,24 +25,4 @@ export class Archivio {
       error: (err: AjaxError) => console.error(err.response),
     });
   }
-
-  ricercaLibri(stringaInserita: string, libro: Libro, libriTrovati:Array<Libro>) {
-    // Togliere gli spazi prima e dopo la stringa
-    stringaInserita = stringaInserita.trim();
-    // console.log(stringaInserita);
-    // Pattern per l'espressione regolare che accetta una città
-    let pattern = /[a-z]*\s?[a-z]*/;
-
-    if (
-      pattern.test(stringaInserita) &&
-      (libro.autore.toLowerCase().includes(stringaInserita.toLowerCase()) ||
-        libro.titolo.toLowerCase().includes(stringaInserita.toLowerCase()))
-    ) {
-      libriTrovati.push({ titolo: libro['titolo'], autore: libro['autore'], posizione: libro['posizione'], nominativo: libro['nominativo'] });
-    } 
-  }
-
-  // constructor(listaLibri: ){
-  //   this.listaLibri = listaLibri;
-  // }
 }
