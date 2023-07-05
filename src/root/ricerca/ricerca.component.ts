@@ -21,37 +21,42 @@ export class RicercaComponent implements OnInit {
   ngOnInit() {}
 
   ricercaSingoloLibro() {
-    var archivioRicerca = new Archivio(this.archivioAppoggio);
+    let archivioRicerca = new Archivio(this.archivioAppoggio);
 
-    var inputStringa: HTMLInputElement = document.getElementById(
+    let inputStringa: HTMLInputElement = document.getElementById(
       'stringaInput'
     ) as HTMLInputElement;
-    // conterrà i libri che corrispondono alla stringa inserita
-    var libriTrovati: Array<Libro> = [];
     // conterrà il numero di libri trovati corrispondenti alla stringa inserita
-    var occorrenze = document.getElementById('risultatoOccorrenze');
+    let occorrenze = document.getElementById('risultatoOccorrenze');
     // conterrà il testo relativo al libro trovato (corrispondenze=1) corrispondente alla stringa inserita
-    var risultato = document.getElementById('risultatoRicerca');
-    var stringa = inputStringa.value;
+    let risultato = document.getElementById('risultatoRicerca');
+    let stringa = inputStringa.value;
+
+    let libriTrovati: Array<Libro>;
 
     this.archivioAppoggio.getDB().subscribe({
       next: (res: AjaxResponse<any>) => {
         archivioRicerca.libriArchivio = res.response; // riempie l'array che verrà utilizzato nel forEach
+        const copiaLibriArchivio = archivioRicerca.libriArchivio;
+        // alert(copiaLibriArchivio);
         if (stringa === '') {
-          occorrenze.innerHTML = 'Nessun libro trovato';
+          risultato.innerHTML = 'Nessun libro trovato';
         } else {
-          
-          alert("ciao");
-          libriTrovati = archivioRicerca.ricercaLibri(stringa);
-
-          occorrenze.innerHTML = '';
-
-          if (libriTrovati.length == 1) {
-            risultato.innerHTML = 'libro trovato';
-          } else {
-            occorrenze.innerHTML = 'Libri trovati: ' + libriTrovati.length;
-          }
+            copiaLibriArchivio.forEach((singoloLibro) => {
+              alert(singoloLibro);
+            });
+            // if (
+            //   singoloLibro.autore.toLowerCase().includes(stringa.toLowerCase()) ||
+            //   singoloLibro.titolo.toLowerCase().includes(stringa.toLowerCase())
+            // ) {
+            //   libriTrovati.push({ titolo: singoloLibro['titolo'], autore: singoloLibro['autore'], posizione: singoloLibro['posizione'], nominativo: singoloLibro['nominativo'] });
+            //   alert('ciao');
+            // } 
+          // }
+            // archivioRicerca.ricercaLibri(stringa, singoloLibro, libriTrovati)
         }
+
+        alert(libriTrovati);
       },
       error: (err: AjaxError) => console.error(err.response),
     });
