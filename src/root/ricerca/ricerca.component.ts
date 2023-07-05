@@ -22,7 +22,6 @@ export class RicercaComponent implements OnInit {
 
   ricercaSingoloLibro() {
     let archivioRicerca = new Archivio(this.archivioAppoggio);
-
     let inputStringa: HTMLInputElement = document.getElementById(
       'stringaInput'
     ) as HTMLInputElement;
@@ -31,18 +30,20 @@ export class RicercaComponent implements OnInit {
     // conterrà il testo relativo al libro trovato (corrispondenze=1) corrispondente alla stringa inserita
     let risultato = document.getElementById('risultatoRicerca');
     let stringa = inputStringa.value;
-
+    let pattern = /[a-z]*\s?[a-z]*/;
     let libriTrovati: Array<Libro> = [];
 
     this.archivioAppoggio.getDB().subscribe({
       next: (res: AjaxResponse<any>) => {
         archivioRicerca.libriArchivio = JSON.parse(res.response); // riempie l'array che verrà utilizzato nel forEach
-        const copiaLibriArchivio = archivioRicerca.libriArchivio;
+
+        // Cerca se la stringa è contenuta in almeno un libro
         if (stringa === '') {
           occorrenze.innerHTML = 'Nessun libro trovato';
         } else {
           archivioRicerca.libriArchivio.forEach((singoloLibro) => {
             if (
+              pattern.test(stringa) &&
               singoloLibro['autore']
                 .toLowerCase()
                 .includes(stringa.toLowerCase()) ||
@@ -57,16 +58,19 @@ export class RicercaComponent implements OnInit {
             }
           });
         }
-        risultato.innerHTML = '';
+        occorrenze.innerHTML = '';
 
+        // stampa del risultato
         if (libriTrovati.length == 1) {
+          risultato.innerHTML = '';
           libriTrovati.forEach(
             (singoloLibro) =>
               (risultato.innerHTML +=
-                ' "' + singoloLibro['titolo'] + '" ' + singoloLibro['autore'])
+                ' Titolo: "' + singoloLibro['titolo'] + '" <br>Autore:' + singoloLibro['autore'] + '<br>Posizione:' + singoloLibro['posizione'])
           );
           occorrenze.innerHTML = '';
         } else {
+          risultato.innerHTML = '';
           occorrenze.innerHTML = 'Libri trovati: ' + libriTrovati.length;
         }
         console.log(libriTrovati);
