@@ -66,14 +66,14 @@ export class RicercaComponent implements OnInit {
           libriTrovati.forEach(
             (singoloLibro) =>
               (risultato.innerHTML +=
-                ' Titolo: "' + singoloLibro['titolo'] + '" <br>Autore:' + singoloLibro['autore'] + '<br>Posizione:' + singoloLibro['posizione'])
+                ' <h4>Descrizione documento:</h4>"' + singoloLibro['posizione'] + '" <br>Autore:' + singoloLibro['autore'] + '<br>Titolo:' + singoloLibro['titolo'])
           );
           occorrenze.innerHTML = '';
         } else {
           risultato.innerHTML = '';
           occorrenze.innerHTML = 'Libri trovati: ' + libriTrovati.length;
         }
-        console.log(libriTrovati);
+        // console.log(libriTrovati);
       },
       error: (err: AjaxError) => console.error(err.response),
     });
