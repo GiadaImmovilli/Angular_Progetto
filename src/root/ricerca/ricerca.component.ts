@@ -32,31 +32,28 @@ export class RicercaComponent implements OnInit {
     let risultato = document.getElementById('risultatoRicerca');
     let stringa = inputStringa.value;
 
-    let libriTrovati: Array<Libro>;
+    let libriTrovati: Array<Libro> = [];
 
     this.archivioAppoggio.getDB().subscribe({
       next: (res: AjaxResponse<any>) => {
-        archivioRicerca.libriArchivio = res.response; // riempie l'array che verrà utilizzato nel forEach
+        archivioRicerca.libriArchivio = JSON.parse(res.response); // riempie l'array che verrà utilizzato nel forEach
         const copiaLibriArchivio = archivioRicerca.libriArchivio;
-        // alert(copiaLibriArchivio);
         if (stringa === '') {
           risultato.innerHTML = 'Nessun libro trovato';
         } else {
-            copiaLibriArchivio.forEach((singoloLibro) => {
-              alert(singoloLibro);
+          archivioRicerca.libriArchivio.forEach((singoloLibro) => {
+            if (
+                singoloLibro.autore.toLowerCase().includes(stringa.toLowerCase()) ||
+                singoloLibro.titolo.toLowerCase().includes(stringa.toLowerCase())
+              ) {
+                libriTrovati.push({ titolo: singoloLibro['titolo'], autore: singoloLibro['autore'], posizione: singoloLibro['posizione'], nominativo: singoloLibro['nominativo'] });
+              } 
             });
-            // if (
-            //   singoloLibro.autore.toLowerCase().includes(stringa.toLowerCase()) ||
-            //   singoloLibro.titolo.toLowerCase().includes(stringa.toLowerCase())
-            // ) {
-            //   libriTrovati.push({ titolo: singoloLibro['titolo'], autore: singoloLibro['autore'], posizione: singoloLibro['posizione'], nominativo: singoloLibro['nominativo'] });
-            //   alert('ciao');
-            // } 
+            // 
           // }
             // archivioRicerca.ricercaLibri(stringa, singoloLibro, libriTrovati)
         }
-
-        alert(libriTrovati);
+        console.log(libriTrovati);
       },
       error: (err: AjaxError) => console.error(err.response),
     });
