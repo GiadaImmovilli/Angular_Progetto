@@ -39,19 +39,35 @@ export class RicercaComponent implements OnInit {
         archivioRicerca.libriArchivio = JSON.parse(res.response); // riempie l'array che verrà utilizzato nel forEach
         const copiaLibriArchivio = archivioRicerca.libriArchivio;
         if (stringa === '') {
-          risultato.innerHTML = 'Nessun libro trovato';
+          occorrenze.innerHTML = 'Nessun libro trovato';
         } else {
           archivioRicerca.libriArchivio.forEach((singoloLibro) => {
             if (
-                singoloLibro.autore.toLowerCase().includes(stringa.toLowerCase()) ||
-                singoloLibro.titolo.toLowerCase().includes(stringa.toLowerCase())
-              ) {
-                libriTrovati.push({ titolo: singoloLibro['titolo'], autore: singoloLibro['autore'], posizione: singoloLibro['posizione'], nominativo: singoloLibro['nominativo'] });
-              } 
-            });
-            // 
-          // }
-            // archivioRicerca.ricercaLibri(stringa, singoloLibro, libriTrovati)
+              singoloLibro['autore']
+                .toLowerCase()
+                .includes(stringa.toLowerCase()) ||
+              singoloLibro['titolo'].toLowerCase().includes(stringa.toLowerCase())
+            ) {
+              libriTrovati.push({
+                titolo: singoloLibro['titolo'],
+                autore: singoloLibro['autore'],
+                posizione: singoloLibro['posizione'],
+                nominativo: singoloLibro['nominativo'],
+              });
+            }
+          });
+        }
+        risultato.innerHTML = '';
+
+        if (libriTrovati.length == 1) {
+          libriTrovati.forEach(
+            (singoloLibro) =>
+              (risultato.innerHTML +=
+                ' "' + singoloLibro['titolo'] + '" ' + singoloLibro['autore'])
+          );
+          occorrenze.innerHTML = '';
+        } else {
+          occorrenze.innerHTML = 'Libri trovati: ' + libriTrovati.length;
         }
         console.log(libriTrovati);
       },
