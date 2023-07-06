@@ -25,6 +25,8 @@ export class RicercaComponent implements OnInit {
 
   trovato: boolean = false; // true quando sarà restituito un solo libro
   prestato: boolean; // true se il libro è prestato, false altrimenti
+  libroTrovato: Libro; // da passare ai figli
+  archivioRicerca = new Archivio(this.archivioAppoggio);
 
   @Input() ricerca: boolean;
   @Output() nascondi = new EventEmitter<boolean>();
@@ -32,7 +34,6 @@ export class RicercaComponent implements OnInit {
   ngOnInit() {}
 
   ricercaSingoloLibro() {
-    let archivioRicerca = new Archivio(this.archivioAppoggio);
     let inputStringa: HTMLInputElement = document.getElementById(
       'stringaInput'
     ) as HTMLInputElement;
@@ -43,17 +44,16 @@ export class RicercaComponent implements OnInit {
     let stringa = inputStringa.value;
     let pattern = /[a-z]*\s?[a-z]*/;
     let libriTrovati: Array<Libro> = [];
-    let libroTrovato: Libro;
 
     this.archivioAppoggio.getDB().subscribe({
       next: (res: AjaxResponse<any>) => {
-        archivioRicerca.libriArchivio = JSON.parse(res.response);
+        this.archivioRicerca.libriArchivio = JSON.parse(res.response);
 
         // Cerca se la stringa è contenuta in almeno un libro
         if (stringa === '') {
           occorrenze.innerHTML = 'Nessun libro trovato';
         } else {
-          archivioRicerca.libriArchivio.forEach((singoloLibro) => {
+          this.archivioRicerca.libriArchivio.forEach((singoloLibro) => {
             if (
               (pattern.test(stringa) &&
                 singoloLibro['autore']
@@ -77,12 +77,12 @@ export class RicercaComponent implements OnInit {
         // stampa del risultato
         if (libriTrovati.length == 1) {
           risultato.innerHTML = '';
-          libroTrovato = libriTrovati[0];
+          this.libroTrovato = libriTrovati[0];
           occorrenze.innerHTML = '';
 
           this.trovato = true; // non serve più l'input della ricerca
 
-          if (libriTrovati['nominativo'] == 'none') {
+          if (this.libroTrovato['nominativo'] == 'none') {
             this.prestato = false;
           } else {
             this.prestato = true;

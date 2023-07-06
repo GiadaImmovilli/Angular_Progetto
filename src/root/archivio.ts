@@ -25,4 +25,13 @@ export class Archivio {
       error: (err: AjaxError) => console.error(err.response),
     });
   }
+
+  rimozioneLibro(libroTrovato: Libro){
+    this.libriArchivio.forEach((singoloLibro) => {
+      if(singoloLibro == libroTrovato)
+      {
+        alert("libro da rimuovere");
+      }
+    });
+  }
 }
