@@ -15,12 +15,21 @@ export class RimozioneComponent implements OnInit {
   constructor(private archivioAppoggio: AccessoArchivioService) {}
 
   @Input() prestato: boolean;
+  @Input() ricerca: boolean;
   @Input() libroTrovato: Libro;
   @Input() archivioRicerca: Archivio;
+  @Output() nascondiR = new EventEmitter<boolean>();
 
   ngOnInit() {}
 
   rimozione() {
     this.archivioRicerca.rimozioneLibro(this.libroTrovato);
+    this.nascondiRimozione();
+  }
+
+  nascondiRimozione() {
+    this.ricerca = false;
+    this.nascondiR.emit(this.ricerca);
+    console.log(this.ricerca);
   }
 }

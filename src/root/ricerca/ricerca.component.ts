@@ -101,4 +101,8 @@ export class RicercaComponent implements OnInit {
     this.ricerca = false;
     this.nascondi.emit(this.ricerca);
   }
+
+  nascondiBtnRimozione(valore: boolean) {
+    this.ricerca = valore;
+  }
 }

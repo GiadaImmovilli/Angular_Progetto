@@ -27,15 +27,12 @@ export class Archivio {
   }
 
   rimozioneLibro(libroDaEliminare: Libro) {
-    let nuovo;
-    nuovo = this.libriArchivio.filter((singoloLibro) => {
+    let libriArAggiornato;
+    libriArAggiornato = this.libriArchivio.filter((singoloLibro) => {
       return singoloLibro['autore'] !== libroDaEliminare['autore'];
     });
 
-    // console.log(indice);
-    // this.libriArchivio.splice(indice, 1);
-    // console.log(this.libriArchivio);
-    this.archivioAppoggio.setDB(nuovo).subscribe({
+    this.archivioAppoggio.setDB(libriArAggiornato).subscribe({
       next: (res: AjaxResponse<any>) => {
         console.log('rimosso' + libroDaEliminare);
       },
