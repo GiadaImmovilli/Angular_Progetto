@@ -21,7 +21,6 @@ export class RimozioneComponent implements OnInit {
   ngOnInit() {}
 
   rimozione() {
-    console.log(this.libroTrovato['autore']);
-    console.log(this.archivioRicerca);
+    this.archivioRicerca.rimozioneLibro(this.libroTrovato);
   }
 }

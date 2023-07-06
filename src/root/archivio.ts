@@ -26,12 +26,22 @@ export class Archivio {
     });
   }
 
-  rimozioneLibro(libroTrovato: Libro){
-    this.libriArchivio.forEach((singoloLibro) => {
-      if(singoloLibro == libroTrovato)
-      {
-        alert("libro da rimuovere");
-      }
+  rimozioneLibro(libroDaEliminare: Libro) {
+    let indice: number = this.libriArchivio.indexOf(libroDaEliminare); // trova l'indice del libro che si vuole eliminare nell'archivio
+    // this.libriArchivio.forEach((singoloLibro) => {
+    //   if(singoloLibro == libroTrovato)
+    //   {
+    //     this.libriArchivio.splice(indice,1);
+    //     this.archivioAppoggio.setDB(this.libriArchivio).subscribe({
+    //       next: (res: AjaxResponse<any>) => {},
+    //       error: (err: AjaxError) => console.error(err.response),
+    //     });
+    //   }
+    // });
+    this.libriArchivio.splice(indice, 1); // elimina l'elemento di posto indice
+    this.archivioAppoggio.setDB(this.libriArchivio).subscribe({
+      next: (res: AjaxResponse<any>) => {},
+      error: (err: AjaxError) => console.error(err.response),
     });
   }
 }
