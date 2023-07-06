@@ -13,10 +13,18 @@ import { RimozioneComponent } from './rimozione/rimozione.component';
   templateUrl: './ricerca.component.html',
   styleUrls: ['./ricerca.component.css'],
   standalone: true,
-  imports: [CommonModule, PrestitoComponent, RestituzioneComponent, RimozioneComponent],
+  imports: [
+    CommonModule,
+    PrestitoComponent,
+    RestituzioneComponent,
+    RimozioneComponent,
+  ],
 })
 export class RicercaComponent implements OnInit {
   constructor(private archivioAppoggio: AccessoArchivioService) {}
+
+  trovato: boolean = false; // true quando sarà restituito un solo libro
+  prestato: boolean; // true se il libro è prestato, false altrimenti
 
   @Input() ricerca: boolean;
   @Output() nascondi = new EventEmitter<boolean>();
@@ -35,6 +43,7 @@ export class RicercaComponent implements OnInit {
     let stringa = inputStringa.value;
     let pattern = /[a-z]*\s?[a-z]*/;
     let libriTrovati: Array<Libro> = [];
+    let libroTrovato: Libro;
 
     this.archivioAppoggio.getDB().subscribe({
       next: (res: AjaxResponse<any>) => {
@@ -68,18 +77,16 @@ export class RicercaComponent implements OnInit {
         // stampa del risultato
         if (libriTrovati.length == 1) {
           risultato.innerHTML = '';
-          libriTrovati.forEach(
-            (singoloLibro) =>
-              (risultato.innerHTML +=
-                ' <h4>Descrizione documento:</h4>' +
-                singoloLibro['posizione'] +
-                '<br>Autore: ' +
-                singoloLibro['autore'] +
-                '<br>Titolo: "' +
-                singoloLibro['titolo'] +
-                '"')
-          );
+          libroTrovato = libriTrovati[0];
           occorrenze.innerHTML = '';
+
+          this.trovato = true; // non serve più l'input della ricerca
+
+          if (libriTrovati['nominativo'] == 'none') {
+            this.prestato = false;
+          } else {
+            this.prestato = true;
+          }
         } else {
           risultato.innerHTML = '';
           occorrenze.innerHTML = 'Libri trovati: ' + libriTrovati.length;
