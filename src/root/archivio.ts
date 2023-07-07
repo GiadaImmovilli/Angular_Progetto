@@ -45,6 +45,5 @@ export class Archivio {
       next: (res: AjaxResponse<any>) => {},
       error: (err: AjaxError) => console.error(err.response),
     });
-    console.log(this.libriArchivio);
   }
 }
