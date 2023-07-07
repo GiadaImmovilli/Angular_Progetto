@@ -8,13 +8,6 @@ export class Archivio {
 
   constructor(archivioAppoggio: AccessoArchivioService) {
     this.archivioAppoggio = archivioAppoggio;
-    // this.archivioAppoggio.getDB().subscribe({
-    //   next: (res: AjaxResponse<any>) => {
-    //     this.archivio = JSON.parse(res.response);
-    //     document.getElementById('output').innerHTML = String(this.archivio);
-    //   },
-    //   error: (err: AjaxError) => console.error(err.response),
-    // });
   }
 
   inserimentoLibro(libroInserito: Libro) {
@@ -29,7 +22,7 @@ export class Archivio {
   rimozioneLibro(libroDaEliminare: Libro) {
     let libriArAggiornato;
     libriArAggiornato = this.libriArchivio.filter((singoloLibro) => {
-      return singoloLibro['autore'] !== libroDaEliminare['autore'];
+      return singoloLibro['titolo'] !== libroDaEliminare['titolo'];
     });
 
     this.archivioAppoggio.setDB(libriArAggiornato).subscribe({
@@ -38,5 +31,20 @@ export class Archivio {
       },
       error: (err: AjaxError) => console.error(err.response),
     });
+  }
+
+  prestitoLibro(libroDaPrendere: Libro, nomeInserito: string) {
+    let libriArAggiornato;
+    this.libriArchivio.forEach((singoloLibro) => {
+      if (singoloLibro['titolo'] == libroDaPrendere['titolo']) {
+        singoloLibro['nominativo'] = nomeInserito;
+      }
+    });
+
+    this.archivioAppoggio.setDB(this.libriArchivio).subscribe({
+      next: (res: AjaxResponse<any>) => {},
+      error: (err: AjaxError) => console.error(err.response),
+    });
+    console.log(this.libriArchivio);
   }
 }

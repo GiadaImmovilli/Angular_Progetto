@@ -23,6 +23,11 @@ export class PrestitoComponent implements OnInit {
   ngOnInit() {}
 
   confermaPrestito() {
+    let inputStringa: HTMLInputElement = document.getElementById(
+      'nomeInput'
+    ) as HTMLInputElement;
+    let nome = inputStringa.value;
+    this.archivioRicerca.prestitoLibro(this.libroTrovato, nome);
     this.nascondiPrestito();
   }
   nascondiPrestito() {
