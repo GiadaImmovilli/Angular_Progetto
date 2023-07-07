@@ -34,7 +34,6 @@ export class Archivio {
   }
 
   prestitoLibro(libroDaPrendere: Libro, nomeInserito: string) {
-    let libriArAggiornato;
     this.libriArchivio.forEach((singoloLibro) => {
       if (singoloLibro['titolo'] == libroDaPrendere['titolo']) {
         singoloLibro['nominativo'] = nomeInserito;
