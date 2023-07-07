@@ -1,19 +1,24 @@
 <div *ngIf="ricerca == true && trovato == false">
-<h4>Inserire il titolo o l'autore del libro che si desidera trovare:</h4>
-<p id="risultatoRicerca"></p>
-<input id="stringaInput" (keyup)="ricercaSingoloLibro()" />
-<p id="risultatoOccorrenze"></p>
-<br /><br />
-<div>
-  <button (click)="nascondiRicerca()">Esci</button>
+  <h4>Inserire il titolo o l'autore del libro che si desidera trovare:</h4>
+  <p id="risultatoRicerca"></p>
+  <input id="stringaInput" (keyup)="ricercaSingoloLibro()" />
+  <p id="risultatoOccorrenze"></p>
+  <br /><br />
+  <div>
+    <button (click)="nascondiRicerca()">Esci</button>
+  </div>
 </div>
-</div>
-<app-prestito [prestato]="prestato"></app-prestito>
+<app-prestito
+  [prestato]="prestato"
+  [ricerca]="ricerca"
+  [libroTrovato]="libroTrovato"
+  [archivioRicerca]="archivioRicerca"
+></app-prestito>
 <app-restituzione [prestato]="prestato"></app-restituzione>
 <app-rimozione
-[prestato]="prestato"
-[libroTrovato]="libroTrovato"
-[archivioRicerca]="archivioRicerca"
-[ricerca]="ricerca"
-(nascondiR)="nascondiBtnRimozione($event)"
+  [prestato]="prestato"
+  [libroTrovato]="libroTrovato"
+  [archivioRicerca]="archivioRicerca"
+  [ricerca]="ricerca"
+  (nascondiR)="nascondiBtnRimozione($event)"
 ></app-rimozione>

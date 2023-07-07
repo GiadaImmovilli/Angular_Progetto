@@ -30,6 +30,5 @@ export class RimozioneComponent implements OnInit {
   nascondiRimozione() {
     this.ricerca = false;
     this.nascondiR.emit(this.ricerca);
-    console.log(this.ricerca);
   }
 }
