@@ -1,4 +1,4 @@
-<div *ngIf = 'prestato == false && ricerca == true'>
+<div *ngIf="ricerca == true && prestaorimuovi == true">
   <h4>Prestito</h4>
-  Nominativo: <input />
+  Nominativo: <input id="nomeInput" (keyup.enter)="confermaPrestito()" />
 </div>

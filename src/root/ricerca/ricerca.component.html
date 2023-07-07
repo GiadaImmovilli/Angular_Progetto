@@ -9,16 +9,17 @@
   </div>
 </div>
 <app-prestito
-  [prestato]="prestato"
+  [prestaorimuovi]="prestaorimuovi"
   [ricerca]="ricerca"
   [libroTrovato]="libroTrovato"
   [archivioRicerca]="archivioRicerca"
+  (nascondiP)="nascondiPrestitoRimozione($event)"
 ></app-prestito>
-<app-restituzione [prestato]="prestato"></app-restituzione>
+<app-restituzione></app-restituzione>
 <app-rimozione
-  [prestato]="prestato"
+  [prestaorimuovi]="prestaorimuovi"
   [libroTrovato]="libroTrovato"
   [archivioRicerca]="archivioRicerca"
   [ricerca]="ricerca"
-  (nascondiR)="nascondiBtnRimozione($event)"
+  (nascondiR)="nascondiPrestitoRimozione($event)"
 ></app-rimozione>

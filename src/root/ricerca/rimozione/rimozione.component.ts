@@ -14,7 +14,7 @@ import { AccessoArchivioService } from '../../accesso-archivio.service';
 export class RimozioneComponent implements OnInit {
   constructor(private archivioAppoggio: AccessoArchivioService) {}
 
-  @Input() prestato: boolean;
+  @Input() prestaorimuovi: boolean;
   @Input() ricerca: boolean;
   @Input() libroTrovato: Libro;
   @Input() archivioRicerca: Archivio;
@@ -29,6 +29,7 @@ export class RimozioneComponent implements OnInit {
 
   nascondiRimozione() {
     this.ricerca = false;
+    this.prestaorimuovi = false;
     this.nascondiR.emit(this.ricerca);
   }
 }

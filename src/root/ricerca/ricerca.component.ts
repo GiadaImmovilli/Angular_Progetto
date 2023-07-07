@@ -24,8 +24,9 @@ export class RicercaComponent implements OnInit {
   constructor(private archivioAppoggio: AccessoArchivioService) {}
 
   trovato: boolean = false; // true quando sarà restituito un solo libro
-  prestato: boolean; // true se il libro è prestato, false altrimenti
   libroTrovato: Libro; // da passare ai figli
+  prestaorimuovi: boolean = false;
+  restituisci: boolean = false;
   archivioRicerca = new Archivio(this.archivioAppoggio);
 
   @Input() ricerca: boolean;
@@ -83,9 +84,9 @@ export class RicercaComponent implements OnInit {
           this.trovato = true; // non serve più l'input della ricerca
 
           if (this.libroTrovato['nominativo'] == 'none') {
-            this.prestato = false;
+            this.prestaorimuovi = true; // se vuole può prenderlo in prestito
           } else {
-            this.prestato = true;
+            this.restituisci = true;
           }
         } else {
           risultato.innerHTML = '';
@@ -102,9 +103,10 @@ export class RicercaComponent implements OnInit {
     this.nascondi.emit(this.ricerca);
   }
 
-  nascondiBtnRimozione(valore: boolean) {
+  nascondiPrestitoRimozione(valore: boolean) {
     this.ricerca = valore;
     this.trovato = false;
-    this.nascondiRicerca();
+    this.prestaorimuovi = false;
+    this.nascondiRicerca(); // per passarlo a root
   }
 }

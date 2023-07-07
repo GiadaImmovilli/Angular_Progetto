@@ -14,17 +14,20 @@ import { AccessoArchivioService } from '../../accesso-archivio.service';
 export class PrestitoComponent implements OnInit {
   constructor() {}
 
-  @Input() prestato: boolean;
+  @Input() prestaorimuovi: boolean; // info del libro
   @Input() ricerca: boolean;
   @Input() libroTrovato: Libro;
   @Input() archivioRicerca: Archivio;
   @Output() nascondiP = new EventEmitter<boolean>();
 
-
   ngOnInit() {}
 
+  confermaPrestito() {
+    this.nascondiPrestito();
+  }
   nascondiPrestito() {
     this.ricerca = false;
+    this.prestaorimuovi = false;
     this.nascondiP.emit(this.ricerca);
   }
 }
