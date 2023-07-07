@@ -109,4 +109,11 @@ export class RicercaComponent implements OnInit {
     this.prestaorimuovi = false;
     this.nascondiRicerca(); // per passarlo a root
   }
+
+  nascondiBtnRestituzione(valore: boolean) {
+    this.ricerca = valore;
+    this.trovato = false;
+    this.restituisci = false;
+    this.nascondiRicerca(); // per passarlo a root
+  }
 }

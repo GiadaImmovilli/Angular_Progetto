@@ -15,7 +15,7 @@
   [archivioRicerca]="archivioRicerca"
   (nascondiP)="nascondiPrestitoRimozione($event)"
 ></app-prestito>
-<app-restituzione></app-restituzione>
+<app-restituzione [restituisci]="restituisci" (nascondiRe)="nascondiBtnRestituzione($event)"></app-restituzione>
 <app-rimozione
   [prestaorimuovi]="prestaorimuovi"
   [libroTrovato]="libroTrovato"

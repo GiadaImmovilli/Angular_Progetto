@@ -12,9 +12,21 @@ export class RestituzioneComponent implements OnInit {
 
   constructor() { }
 
-  @Input() prestato: boolean;
+  @Input() restituisci: boolean;
+  @Input() ricerca: boolean;
+  @Output() nascondiRe = new EventEmitter<boolean>();
 
   ngOnInit() {
+  }
+
+  restituizione() {
+    this.nascondiRestituzione();
+  }
+
+  nascondiRestituzione() {
+    this.ricerca = false;
+    this.restituisci = false;
+    this.nascondiRe.emit(this.ricerca);
   }
 
 }
