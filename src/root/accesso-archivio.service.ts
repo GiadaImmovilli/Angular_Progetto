@@ -27,11 +27,5 @@ export class AccessoArchivioService {
       crossDomain: true,
       body: nuovoDBStringa,
     });
-    // obs.subscribe({
-    //   next: (res: AjaxResponse<any>) => {
-    //     document.getElementById('output').innerHTML = 'Ok!';
-    //   },
-    //   error: (err: AjaxError) => console.error(err.response),
-    // });
   }
 }
