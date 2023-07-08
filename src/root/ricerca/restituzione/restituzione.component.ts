@@ -1,5 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Libro } from '../../libro';
+import { Archivio } from '../../archivio';
+import { AccessoArchivioService } from '../../accesso-archivio.service';
+
 
 @Component({
   selector: 'app-restituzione',
@@ -13,11 +17,14 @@ export class RestituzioneComponent implements OnInit {
 
   @Input() restituisci: boolean;
   @Input() ricerca: boolean;
+  @Input() libroTrovato: Libro;
+  @Input() archivioRicerca: Archivio;
   @Output() nascondiRe = new EventEmitter<boolean>();
 
   ngOnInit() {}
 
   confermaRestituzione() {
+    this.archivioRicerca.restituzioneLibro(this.libroTrovato);
     this.nascondiRestituzione();
   }
 

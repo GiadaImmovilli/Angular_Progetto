@@ -45,4 +45,17 @@ export class Archivio {
       error: (err: AjaxError) => console.error(err.response),
     });
   }
+
+  restituzioneLibro(libroDaDare: Libro) {
+    this.libriArchivio.forEach((singoloLibro) => {
+      if (singoloLibro['titolo'] == libroDaDare['titolo']) {
+        singoloLibro['nominativo'] = 'none';
+      }
+    });
+
+    this.archivioAppoggio.setDB(this.libriArchivio).subscribe({
+      next: (res: AjaxResponse<any>) => {},
+      error: (err: AjaxError) => console.error(err.response),
+    });
+  }
 }
