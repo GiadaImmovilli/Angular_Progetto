@@ -22,7 +22,7 @@ export class RimozioneComponent implements OnInit {
 
   ngOnInit() {}
 
-  rimozione() {
+  confermaRimozione() {
     this.archivioRicerca.rimozioneLibro(this.libroTrovato);
     this.nascondiRimozione();
   }

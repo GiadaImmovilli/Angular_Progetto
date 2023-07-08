@@ -6,20 +6,18 @@ import { CommonModule } from '@angular/common';
   templateUrl: './restituzione.component.html',
   styleUrls: ['./restituzione.component.css'],
   standalone: true,
-  imports: [CommonModule]
+  imports: [CommonModule],
 })
 export class RestituzioneComponent implements OnInit {
-
-  constructor() { }
+  constructor() {}
 
   @Input() restituisci: boolean;
   @Input() ricerca: boolean;
   @Output() nascondiRe = new EventEmitter<boolean>();
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
-  restituizione() {
+  confermaRestituzione() {
     this.nascondiRestituzione();
   }
 
@@ -28,5 +26,4 @@ export class RestituzioneComponent implements OnInit {
     this.restituisci = false;
     this.nascondiRe.emit(this.ricerca);
   }
-
 }

@@ -3,7 +3,7 @@
   <p id="risultatoRicerca"></p>
   <input id="stringaInput" (keyup)="ricercaSingoloLibro()" />
   <p id="risultatoOccorrenze"></p>
-  <br /><br />
+  <br />
   <div>
     <button (click)="nascondiRicerca()">Esci</button>
   </div>
@@ -15,7 +15,11 @@
   [archivioRicerca]="archivioRicerca"
   (nascondiP)="nascondiPrestitoRimozione($event)"
 ></app-prestito>
-<app-restituzione [restituisci]="restituisci" (nascondiRe)="nascondiBtnRestituzione($event)"></app-restituzione>
+<app-restituzione
+  [restituisci]="restituisci"
+  [ricerca]="ricerca"
+  (nascondiRe)="nascondiBtnRestituzione($event)"
+></app-restituzione>
 <app-rimozione
   [prestaorimuovi]="prestaorimuovi"
   [libroTrovato]="libroTrovato"
