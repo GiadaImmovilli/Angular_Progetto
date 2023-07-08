@@ -22,7 +22,7 @@ export class Archivio {
   rimozioneLibro(libroDaEliminare: Libro) {
     let libriArAggiornato;
     libriArAggiornato = this.libriArchivio.filter((singoloLibro) => {
-      return singoloLibro['titolo'] !== libroDaEliminare['titolo'];
+      return singoloLibro['posizione'] !== libroDaEliminare['posizione'];
     });
 
     this.archivioAppoggio.setDB(libriArAggiornato).subscribe({
@@ -35,7 +35,7 @@ export class Archivio {
 
   prestitoLibro(libroDaPrendere: Libro, nomeInserito: string) {
     this.libriArchivio.forEach((singoloLibro) => {
-      if (singoloLibro['titolo'] == libroDaPrendere['titolo']) {
+      if (singoloLibro['posizione'] == libroDaPrendere['posizione']) {
         singoloLibro['nominativo'] = nomeInserito;
       }
     });
