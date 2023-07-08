@@ -48,6 +48,7 @@ export class RicercaComponent implements OnInit {
 
     this.archivioAppoggio.getDB().subscribe({
       next: (res: AjaxResponse<any>) => {
+        // risultato.innerHTML = '';
         this.archivioRicerca.libriArchivio = JSON.parse(res.response);
 
         // Cerca se la stringa è contenuta in almeno un libro
@@ -77,18 +78,18 @@ export class RicercaComponent implements OnInit {
 
         // stampa del risultato
         if (libriTrovati.length == 1) {
-          this.libroTrovato = libriTrovati[0];
-
-          risultato.innerHTML =
-            '<b>' +
-            this.libroTrovato['posizione'] +
-            '<br>Titolo: ' +
-            this.libroTrovato['titolo'] +
-            '<br>Autore: ' +
-            this.libroTrovato['autore'];
+          this.trovato = true; // non serve più l'input della ricerca
           occorrenze.innerHTML = '';
 
-          this.trovato = true; // non serve più l'input della ricerca
+          this.libroTrovato = libriTrovati[0];
+
+          // risultato.innerHTML =
+          //   '<b>' +
+          //   this.libroTrovato['posizione'] +
+          //   '<br>Titolo: ' +
+          //   this.libroTrovato['titolo'] +
+          //   '<br>Autore: ' +
+          //   this.libroTrovato['autore'];
 
           if (this.libroTrovato['nominativo'] == 'none') {
             this.prestaorimuovi = true; // se vuole può prenderlo in prestito
@@ -96,7 +97,7 @@ export class RicercaComponent implements OnInit {
             this.restituisci = true;
           }
         } else {
-          risultato.innerHTML = '';
+          // risultato.innerHTML = '';
           occorrenze.innerHTML = 'Libri trovati: ' + libriTrovati.length;
         }
         // console.log(libriTrovati);
