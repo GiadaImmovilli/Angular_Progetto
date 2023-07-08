@@ -77,8 +77,15 @@ export class RicercaComponent implements OnInit {
 
         // stampa del risultato
         if (libriTrovati.length == 1) {
-          risultato.innerHTML = '';
           this.libroTrovato = libriTrovati[0];
+
+          risultato.innerHTML =
+            '<b>' +
+            this.libroTrovato['posizione'] +
+            '<br>Titolo: ' +
+            this.libroTrovato['titolo'] +
+            '<br>Autore: ' +
+            this.libroTrovato['autore'];
           occorrenze.innerHTML = '';
 
           this.trovato = true; // non serve più l'input della ricerca
