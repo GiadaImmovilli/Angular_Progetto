@@ -83,13 +83,13 @@ export class RicercaComponent implements OnInit {
 
           this.libroTrovato = libriTrovati[0];
 
-          // risultato.innerHTML =
-          //   '<b>' +
-          //   this.libroTrovato['posizione'] +
-          //   '<br>Titolo: ' +
-          //   this.libroTrovato['titolo'] +
-          //   '<br>Autore: ' +
-          //   this.libroTrovato['autore'];
+          risultato.innerHTML =
+            '<b>' +
+            this.libroTrovato['posizione'] +
+            '<br>Titolo: ' +
+            this.libroTrovato['titolo'] +
+            '<br>Autore: ' +
+            this.libroTrovato['autore'];
 
           if (this.libroTrovato['nominativo'] == 'none') {
             this.prestaorimuovi = true; // se vuole può prenderlo in prestito
