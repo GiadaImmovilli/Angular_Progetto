@@ -100,7 +100,7 @@ export class RicercaComponent implements OnInit {
   nascondiPrestitoRimozione(valore: boolean) {
     this.ricerca = valore;
     this.trovato = false;
-    this.prestaorimuovi = false;
+    this.prestaorimuovi = false; 
     this.nascondiRicerca(); // per passarlo a root
   }
 
