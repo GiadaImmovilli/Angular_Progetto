@@ -17,7 +17,7 @@ export class InserimentoComponent implements OnInit {
 
   @Input() inserisci: boolean;
   @Input() archivioInserimento: Archivio;
-  @Output() nascondi = new EventEmitter<boolean>();
+  @Output() nascondi = new EventEmitter();
 
   confermaInserimento() {
     let inputTitolo: HTMLInputElement = document.getElementById(
@@ -54,6 +54,6 @@ export class InserimentoComponent implements OnInit {
 
   nascondiInserimento() {
     this.inserisci = false;
-    this.nascondi.emit(this.inserisci);
+    this.nascondi.emit();
   }
 }

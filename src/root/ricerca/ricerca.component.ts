@@ -28,7 +28,7 @@ export class RicercaComponent implements OnInit {
 
   @Input() ricerca: boolean;
   @Input() archivioRicerca: Archivio;
-  @Output() nascondi = new EventEmitter<boolean>();
+  @Output() nascondi = new EventEmitter();
 
   ngOnInit() {}
 
@@ -94,7 +94,7 @@ export class RicercaComponent implements OnInit {
 
   nascondiRicerca() {
     this.ricerca = false;
-    this.nascondi.emit(this.ricerca);
+    this.nascondi.emit();
   }
 
   nascondiPrestitoRimozione(valore: boolean) {

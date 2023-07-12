@@ -38,8 +38,8 @@ export class RootComponent implements OnInit {
     this.ottieniDB();
   }
 
-  nascondiFormInserimento(valore: boolean) {
-    this.inserisci = valore;
+  nascondiFormInserimento() {
+    this.inserisci = false;
   }
 
   richiestaRicerca() {
@@ -47,7 +47,7 @@ export class RootComponent implements OnInit {
     this.ottieniDB();
   }
 
-  nascondiFormRicerca(valore: boolean) {
-    this.ricerca = valore;
+  nascondiFormRicerca() {
+    this.ricerca = false;
   }
 }
