@@ -9,9 +9,11 @@
 <app-inserimento
   [inserisci]="inserisci"
   (nascondi)="nascondiFormInserimento($event)"
+  [archivioInserimento]="archivioPresente"
 ></app-inserimento>
 <p id="output"></p>
 <app-ricerca
   [ricerca]="ricerca"
   (nascondi)="nascondiFormRicerca($event)"
+  [archivioRicerca]="archivioPresente"
 ></app-ricerca>

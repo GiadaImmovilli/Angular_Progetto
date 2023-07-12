@@ -2,8 +2,6 @@
   <p id="risultatoRicerca"></p>
 </div>
 
-<!-- <p id="risultatoRicerca"></p> -->
-
 <div *ngIf="ricerca == true && trovato == false">
   <h4>Inserire il titolo o l'autore del libro che si desidera trovare:</h4>
   <input id="stringaInput" (keyup)="ricercaSingoloLibro()" />

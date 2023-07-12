@@ -18,11 +18,10 @@ export class InserimentoComponent implements OnInit {
   ngOnInit() {}
 
   @Input() inserisci: boolean;
-  // @Input() vecchioArchivio: AccessoArchivioService;
+  @Input() archivioInserimento: Archivio;
   @Output() nascondi = new EventEmitter<boolean>();
 
   confermaInserimento() {
-    // variabili che reperiscono le stringhe inserite in input
     let inputTitolo: HTMLInputElement = document.getElementById(
       'titoloInserito'
     ) as HTMLInputElement;
@@ -46,26 +45,14 @@ export class InserimentoComponent implements OnInit {
       'none'
     ); // All'inserimento di un libro, il nominativo è vuoto
 
-    // document.getElementById('output2').innerHTML =
-    //   inputTitolo.value + ' ' + inputAutore.value + ' ' + inputPosizione.value;
-
     let nuovoArchivio = new Archivio(this.archivioAppoggio);
 
-    this.archivioAppoggio.getDB().subscribe({
-      next: (res: AjaxResponse<any>) => {
-        // nuovoArchivio.libriArchivio = res.response;
-        // document.getElementById('output').innerHTML = String(this.archivio);
-        nuovoArchivio.libriArchivio = JSON.parse(res.response);
-        nuovoArchivio.inserimentoLibro(nuovoLibro);
-      },
-      error: (err: AjaxError) => console.error(err.response),
-    });
+    this.archivioInserimento.inserimentoLibro(nuovoLibro);
 
     inputTitolo.value = '';
     inputAutore.value = '';
     inputPosizione.value = '';
 
-    // document.getElementById('output').innerHTML = nuovoArchivio.toString();
     this.nascondiInserimento();
   }
 
