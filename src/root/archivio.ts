@@ -3,7 +3,7 @@ import { AccessoArchivioService } from './accesso-archivio.service';
 import { AjaxResponse, AjaxError } from 'rxjs/ajax';
 
 export class Archivio {
-  libriArchivio: Array<Libro> = []; // attributo della classe Archivio
+  libriArchivio: Array<Libro> = [];
   archivioAppoggio: AccessoArchivioService;
 
   constructor(archivioAppoggio: AccessoArchivioService) {
@@ -12,10 +12,11 @@ export class Archivio {
 
   inserimentoLibro(libroInserito: Libro) {
     this.libriArchivio.push(libroInserito);
-    // document.getElementById('output').innerHTML = String(this.archivio);
     this.archivioAppoggio.setDB(this.libriArchivio).subscribe({
-      next: (res: AjaxResponse<any>) => {},
-      error: (err: AjaxError) => console.error(err.response),
+      next: (res: AjaxResponse<any>) =>
+        console.log('Libro inserito correttamente.'),
+      error: (err: AjaxError) =>
+        console.error("Problema con l'inserimento del libro: " + err.response),
     });
   }
 
@@ -26,10 +27,10 @@ export class Archivio {
     });
 
     this.archivioAppoggio.setDB(libriArAggiornato).subscribe({
-      next: (res: AjaxResponse<any>) => {
-        console.log('rimosso' + libroDaEliminare);
-      },
-      error: (err: AjaxError) => console.error(err.response),
+      next: (res: AjaxResponse<any>) =>
+        console.log('Libro rimosso correttamente.'),
+      error: (err: AjaxError) =>
+        console.error('Problema con la rimozione del libro: ' + err.response),
     });
   }
 
@@ -41,8 +42,10 @@ export class Archivio {
     });
 
     this.archivioAppoggio.setDB(this.libriArchivio).subscribe({
-      next: (res: AjaxResponse<any>) => {},
-      error: (err: AjaxError) => console.error(err.response),
+      next: (res: AjaxResponse<any>) =>
+        console.log('Libro prestato correttamente.'),
+      error: (err: AjaxError) =>
+        console.error('Problema con il prestito del libro: ' + err.response),
     });
   }
 
@@ -54,8 +57,12 @@ export class Archivio {
     });
 
     this.archivioAppoggio.setDB(this.libriArchivio).subscribe({
-      next: (res: AjaxResponse<any>) => {},
-      error: (err: AjaxError) => console.error(err.response),
+      next: (res: AjaxResponse<any>) =>
+        console.log('Libro restituito correttamente.'),
+      error: (err: AjaxError) =>
+        console.error(
+          'Problema con la restituzione del libro: ' + err.response
+        ),
     });
   }
 }

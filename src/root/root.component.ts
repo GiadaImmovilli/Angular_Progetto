@@ -26,10 +26,10 @@ export class RootComponent implements OnInit {
     this.archivioAppoggio.getDB().subscribe({
       next: (res: AjaxResponse<any>) => {
         this.archivioPresente.libriArchivio = JSON.parse(res.response);
-        console.log('DB ottenuto correttamente: ');
+        console.log('DB ottenuto correttamente.');
       },
       error: (err: AjaxError) =>
-        console.error('Problema con il download del DB: ' + err.response),
+        console.error('Problema con il download del DB:' + err.response),
     });
   }
 

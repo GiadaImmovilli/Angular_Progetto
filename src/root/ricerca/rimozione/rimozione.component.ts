@@ -2,7 +2,6 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Libro } from '../../libro';
 import { Archivio } from '../../archivio';
-import { AccessoArchivioService } from '../../accesso-archivio.service';
 
 @Component({
   selector: 'app-rimozione',
@@ -12,7 +11,7 @@ import { AccessoArchivioService } from '../../accesso-archivio.service';
   imports: [CommonModule],
 })
 export class RimozioneComponent implements OnInit {
-  constructor(private archivioAppoggio: AccessoArchivioService) {}
+  constructor() {}
 
   @Input() prestaorimuovi: boolean;
   @Input() ricerca: boolean;

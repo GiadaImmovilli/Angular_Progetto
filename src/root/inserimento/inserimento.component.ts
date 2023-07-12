@@ -1,9 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AccessoArchivioService } from '../accesso-archivio.service';
 import { Archivio } from '../archivio';
 import { Libro } from '../libro';
-import { ajax, AjaxResponse, AjaxRequest, AjaxError } from 'rxjs/ajax';
 
 @Component({
   selector: 'app-inserimento',
@@ -13,7 +11,7 @@ import { ajax, AjaxResponse, AjaxRequest, AjaxError } from 'rxjs/ajax';
   imports: [CommonModule],
 })
 export class InserimentoComponent implements OnInit {
-  constructor(private archivioAppoggio: AccessoArchivioService) {}
+  constructor() {}
 
   ngOnInit() {}
 
@@ -44,8 +42,6 @@ export class InserimentoComponent implements OnInit {
       nuovaPosizione,
       'none'
     ); // All'inserimento di un libro, il nominativo è vuoto
-
-    let nuovoArchivio = new Archivio(this.archivioAppoggio);
 
     this.archivioInserimento.inserimentoLibro(nuovoLibro);
 
