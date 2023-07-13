@@ -14,7 +14,6 @@ export class PrestitoComponent implements OnInit {
   constructor() {}
 
   @Input() prestaorimuovi: boolean; // info del libro
-  @Input() ricerca: boolean;
   @Input() libroTrovato: Libro;
   @Input() archivioRicerca: Archivio;
   @Output() nascondiP = new EventEmitter();
@@ -30,7 +29,6 @@ export class PrestitoComponent implements OnInit {
     this.nascondiPrestito();
   }
   nascondiPrestito() {
-    this.ricerca = false;
     this.prestaorimuovi = false;
     this.nascondiP.emit();
   }

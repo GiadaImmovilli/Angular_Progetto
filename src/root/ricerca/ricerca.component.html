@@ -13,14 +13,12 @@
 </div>
 <app-prestito
   [prestaorimuovi]="prestaorimuovi"
-  [ricerca]="ricerca"
   [libroTrovato]="libroTrovato"
   [archivioRicerca]="archivioRicerca"
   (nascondiP)="nascondiPrestitoRimozione()"
 ></app-prestito>
 <app-restituzione
   [restituisci]="restituisci"
-  [ricerca]="ricerca"
   [libroTrovato]="libroTrovato"
   [archivioRicerca]="archivioRicerca"
   (nascondiRe)="nascondiBtnRestituzione()"
@@ -29,6 +27,5 @@
   [prestaorimuovi]="prestaorimuovi"
   [libroTrovato]="libroTrovato"
   [archivioRicerca]="archivioRicerca"
-  [ricerca]="ricerca"
   (nascondiR)="nascondiPrestitoRimozione()"
 ></app-rimozione>

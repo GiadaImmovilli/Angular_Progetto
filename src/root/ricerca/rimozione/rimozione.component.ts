@@ -14,7 +14,6 @@ export class RimozioneComponent implements OnInit {
   constructor() {}
 
   @Input() prestaorimuovi: boolean;
-  @Input() ricerca: boolean;
   @Input() libroTrovato: Libro;
   @Input() archivioRicerca: Archivio;
   @Output() nascondiR = new EventEmitter();
@@ -27,7 +26,6 @@ export class RimozioneComponent implements OnInit {
   }
 
   nascondiRimozione() {
-    this.ricerca = false;
     this.prestaorimuovi = false;
     this.nascondiR.emit();
   }

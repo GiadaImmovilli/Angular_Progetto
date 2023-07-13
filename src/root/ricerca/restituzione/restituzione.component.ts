@@ -14,7 +14,6 @@ export class RestituzioneComponent implements OnInit {
   constructor() {}
 
   @Input() restituisci: boolean;
-  @Input() ricerca: boolean;
   @Input() libroTrovato: Libro;
   @Input() archivioRicerca: Archivio;
   @Output() nascondiRe = new EventEmitter();
@@ -27,7 +26,6 @@ export class RestituzioneComponent implements OnInit {
   }
 
   nascondiRestituzione() {
-    this.ricerca = false;
     this.restituisci = false;
     this.nascondiRe.emit();
   }
