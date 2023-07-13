@@ -39,7 +39,7 @@ export class RicercaComponent implements OnInit {
     let occorrenze = document.getElementById('risultatoOccorrenze');
     // conterrà il testo relativo al libro trovato (corrispondenze=1) corrispondente alla stringa inserita
     let risultato = document.getElementById('risultatoRicerca');
-    let stringa = inputStringa.value;
+    let stringa = inputStringa.value.trim();
     let pattern = /[a-z]*\s?[a-z]*/;
     let libriTrovati: Array<Libro> = [];
 
