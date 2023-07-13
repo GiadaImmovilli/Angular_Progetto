@@ -17,7 +17,7 @@ export class RestituzioneComponent implements OnInit {
   @Input() ricerca: boolean;
   @Input() libroTrovato: Libro;
   @Input() archivioRicerca: Archivio;
-  @Output() nascondiRe = new EventEmitter<boolean>();
+  @Output() nascondiRe = new EventEmitter();
 
   ngOnInit() {}
 
@@ -29,6 +29,6 @@ export class RestituzioneComponent implements OnInit {
   nascondiRestituzione() {
     this.ricerca = false;
     this.restituisci = false;
-    this.nascondiRe.emit(this.ricerca);
+    this.nascondiRe.emit();
   }
 }

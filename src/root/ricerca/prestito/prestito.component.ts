@@ -17,7 +17,7 @@ export class PrestitoComponent implements OnInit {
   @Input() ricerca: boolean;
   @Input() libroTrovato: Libro;
   @Input() archivioRicerca: Archivio;
-  @Output() nascondiP = new EventEmitter<boolean>();
+  @Output() nascondiP = new EventEmitter();
 
   ngOnInit() {}
 
@@ -32,6 +32,6 @@ export class PrestitoComponent implements OnInit {
   nascondiPrestito() {
     this.ricerca = false;
     this.prestaorimuovi = false;
-    this.nascondiP.emit(this.ricerca);
+    this.nascondiP.emit();
   }
 }

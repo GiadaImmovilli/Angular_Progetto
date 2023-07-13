@@ -97,15 +97,15 @@ export class RicercaComponent implements OnInit {
     this.nascondi.emit();
   }
 
-  nascondiPrestitoRimozione(valore: boolean) {
-    this.ricerca = valore;
+  nascondiPrestitoRimozione() {
+    this.ricerca = false;
     this.trovato = false;
-    this.prestaorimuovi = false; 
+    this.prestaorimuovi = false;
     this.nascondiRicerca(); // per passarlo a root
   }
 
-  nascondiBtnRestituzione(valore: boolean) {
-    this.ricerca = valore;
+  nascondiBtnRestituzione() {
+    this.ricerca = false;
     this.trovato = false;
     this.restituisci = false;
     this.nascondiRicerca(); // per passarlo a root

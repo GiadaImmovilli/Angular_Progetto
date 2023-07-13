@@ -17,7 +17,7 @@ export class RimozioneComponent implements OnInit {
   @Input() ricerca: boolean;
   @Input() libroTrovato: Libro;
   @Input() archivioRicerca: Archivio;
-  @Output() nascondiR = new EventEmitter<boolean>();
+  @Output() nascondiR = new EventEmitter();
 
   ngOnInit() {}
 
@@ -29,6 +29,6 @@ export class RimozioneComponent implements OnInit {
   nascondiRimozione() {
     this.ricerca = false;
     this.prestaorimuovi = false;
-    this.nascondiR.emit(this.ricerca);
+    this.nascondiR.emit();
   }
 }
