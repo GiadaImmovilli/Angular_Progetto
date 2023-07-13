@@ -21,7 +21,6 @@ import { RimozioneComponent } from './rimozione/rimozione.component';
 export class RicercaComponent implements OnInit {
   constructor() {}
 
-  trovato: boolean = false; // true quando sarà restituito un solo libro
   libroTrovato: Libro; // da passare ai figli
   prestaorimuovi: boolean = false;
   restituisci: boolean = false;
@@ -80,15 +79,12 @@ export class RicercaComponent implements OnInit {
         '<br><b>Autore: </b>' +
         this.libroTrovato['autore'];
 
-      this.trovato = true; // non serve più l'input della ricerca
-
       if (this.libroTrovato['nominativo'] == 'none') {
         this.prestaorimuovi = true;
       } else {
         this.restituisci = true;
       }
     } else {
-      this.trovato = false;
       occorrenze.innerHTML = 'Libri trovati: ' + libriTrovati.length;
     }
   }
@@ -99,13 +95,11 @@ export class RicercaComponent implements OnInit {
   }
 
   nascondiPrestitoRimozione() {
-    this.trovato = false;
     this.prestaorimuovi = false;
     this.nascondiRicerca(); // per passarlo a root
   }
 
   nascondiBtnRestituzione() {
-    this.trovato = false;
     this.restituisci = false;
     this.nascondiRicerca(); // per passarlo a root
   }
