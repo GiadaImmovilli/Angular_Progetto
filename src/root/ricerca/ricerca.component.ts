@@ -45,8 +45,8 @@ export class RicercaComponent implements OnInit {
     let libriTrovati: Array<Libro> = [];
 
     // Cerca se la stringa è contenuta in almeno un libro
-    if (stringa === '') {
-      occorrenze.innerHTML = 'Nessun libro trovato';
+    if (stringa == '') {
+      occorrenze.innerHTML = 'Libri trovati: 0';
     } else {
       this.archivioRicerca.libriArchivio.forEach((singoloLibro) => {
         if (
@@ -69,9 +69,7 @@ export class RicercaComponent implements OnInit {
 
     // stampa del risultato
     if (libriTrovati.length == 1) {
-      this.trovato = true; // non serve più l'input della ricerca
       occorrenze.innerHTML = '';
-
       this.libroTrovato = libriTrovati[0];
 
       risultato.innerHTML =
@@ -82,12 +80,15 @@ export class RicercaComponent implements OnInit {
         '<br><b>Autore: </b>' +
         this.libroTrovato['autore'];
 
+      this.trovato = true; // non serve più l'input della ricerca
+
       if (this.libroTrovato['nominativo'] == 'none') {
-        this.prestaorimuovi = true; // se vuole può prenderlo in prestito
+        this.prestaorimuovi = true;
       } else {
         this.restituisci = true;
       }
     } else {
+      this.trovato = false;
       occorrenze.innerHTML = 'Libri trovati: ' + libriTrovati.length;
     }
   }
@@ -98,14 +99,12 @@ export class RicercaComponent implements OnInit {
   }
 
   nascondiPrestitoRimozione() {
-    this.ricerca = false;
     this.trovato = false;
     this.prestaorimuovi = false;
     this.nascondiRicerca(); // per passarlo a root
   }
 
   nascondiBtnRestituzione() {
-    this.ricerca = false;
     this.trovato = false;
     this.restituisci = false;
     this.nascondiRicerca(); // per passarlo a root
