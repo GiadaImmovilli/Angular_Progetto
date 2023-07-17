@@ -51,7 +51,7 @@ export class Archivio {
 
   restituzioneLibro(libroDaDare: Libro) {
     this.libriArchivio.forEach((singoloLibro) => {
-      if (singoloLibro['titolo'] == libroDaDare['titolo']) {
+      if (singoloLibro['posizione'] == libroDaDare['posizione']) {
         singoloLibro['nominativo'] = 'none';
       }
     });
