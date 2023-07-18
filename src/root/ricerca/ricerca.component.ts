@@ -43,7 +43,7 @@ export class RicercaComponent implements OnInit {
     let pattern = /[a-z]*\s?[a-z]*/;
     let libriTrovati: Array<Libro> = [];
 
-    // Cerca se la stringa è contenuta in almeno un libro
+    // cerca se la stringa è contenuta in almeno un libro
     if (stringa == '') {
       occorrenze.innerHTML = 'Libri trovati: 0';
     } else {
